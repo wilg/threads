@@ -1,2 +1,0 @@
-class MessageThreadsController < ApplicationController
-end
