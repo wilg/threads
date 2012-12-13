@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @threads = @project.threads.latest
+    @threads = @project.threads.latest_first
 
     respond_to do |format|
       format.html # show.html.erb

@@ -11,7 +11,7 @@ class MessageThread < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :project
 
-  scope :latest, -> { order("updated_at desc") }
+  scope :latest_first, -> { order("updated_at desc") }
 
   def to_param
     "#{id}-#{name.parameterize}"

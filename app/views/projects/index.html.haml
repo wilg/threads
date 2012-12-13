@@ -16,11 +16,12 @@
         %i.icon-inbox
         = link_to project.name, project
         .muted
-          - if thread = project.threads.latest.last
-            = image_tag avatar(thread.last_message.user, s: 16)
-            %strong= thread.last_message.user.name
+          - if message = project.last_message
+            = image_tag avatar(message.user, s: 16)
+            %strong= message.user.name
+            %em= truncate message.body, length: 50
             in
-            %em= thread.name
+            = link_to message.thread.name, message.thread
 
 - if @projects.size < 1
   .well

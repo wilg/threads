@@ -14,4 +14,8 @@ class Project < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  def last_message
+    @last_message ||= messages.latest_first.first
+  end
+
 end
