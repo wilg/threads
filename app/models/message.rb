@@ -4,6 +4,9 @@ class Message < ActiveRecord::Base
   belongs_to :thread, class_name: "MessageThread", touch: true
   has_one :project, through: :thread
 
+  validates_presence_of :thread
+  validates_presence_of :body
+
   # For creating a message without a thread.
   attr_accessor :project_id, :thread_name
 

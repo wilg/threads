@@ -8,6 +8,13 @@ class MessageThread < ActiveRecord::Base
 
   attr_accessible :name
 
+  validates_presence_of :name
+  validates_presence_of :project
+
   scope :latest, -> { order("updated_at desc") }
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 
 end

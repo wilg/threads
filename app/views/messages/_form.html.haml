@@ -9,10 +9,10 @@
   - if @message.thread.present?
     = f.hidden_field :thread_id
   - else 
-    = f.hidden_field :project_id
     = f.text_field :thread_name, "Subject" do
       %span.help-block
         We'll create a new thread for this subject.
+    = f.select :project_id, "Project", Project.all.map{|p| [p.name, p.id]}
 
   = f.text_area :body, "Message"
 

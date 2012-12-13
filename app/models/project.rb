@@ -5,6 +5,12 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name
 
+  validates_presence_of :name
+
   scope :latest, -> { order("updated_at desc") }
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 
 end
