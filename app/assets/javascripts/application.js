@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require rails-timeago
 //= require turbolinks
+//= require mousetrap.min
+// require bootstrap
 //= require_tree .

@@ -12,6 +12,7 @@ if push_key? and push_channel?
   channel.bind 'message_created', (data) ->
     console.log data
 
+    $(".thread-show.thread-#{data.thread_id}").trigger('threads:update')
     if "#{data.user_id}" is "#{current_user_id}"
       console.log "Recieved a notification about user #{data.user_id} but we are #{current_user_id}"
     else

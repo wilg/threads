@@ -1,23 +1,26 @@
 - title @message_thread.project.name, @message_thread.name
 
-.page-header.clearfix
-  .btn-toolbar.pull-right
-    = link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary" do
-      %i.icon-edit.icon-white
-      Reply
-    = link_to edit_message_thread_path(@message_thread), class: 'btn' do
-      %i.icon-asterisk
-      Options
-  %h1= @message_thread.name
-  %h4.muted in #{link_to @message_thread.project.name, @message_thread.project}
+.thread-show{class: "thread-#{@message_thread.id}", "data-update-url" => message_thread_url(@message_thread, update: true)}
+  .page-header.clearfix
+    .btn-toolbar.pull-right
+      = link_to edit_message_thread_path(@message_thread), class: 'btn' do
+        %i.icon-asterisk
+        Options
+    %h1= @message_thread.name
+    %h4.muted in #{link_to @message_thread.project.name, @message_thread.project}
 
-.thread-messages
-  = render @message_thread.messages.latest_first
+  // Quick Reply
+  = link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary key-compose", id: "thread-quick-reply-shield" do
+    %i.icon-edit.icon-white
+    Reply
+  / #thread-quick-reply-shield
+  /   Click To Reply
+  #thread-quick-reply{style: "display: none"}
+    = form_for @message_thread.messages.build, remote: true, :html => { :class => 'form-horizontal'} do |f|
+      = f.hidden_field :thread_id
+      = f.text_area :body, rows: "3"
+      .buttons.clearfix
+        = f.submit 'Send', class: 'btn btn-primary key-send', data: {disable_with: "Sending..."}
 
-/ %hr
-
-/ %ul.breadcrumb
-/   %li
-/     = link_to @message_thread.project.name, @message_thread.project
-/     %span.divider /
-/   %li.active= link_to @message_thread.name, @message_thread
+  .thread-messages
+    = render @message_thread.messages.latest_first
