@@ -23,4 +23,6 @@ gem 'gravatar-ultimate'
 gem 'devise'
 gem 'cancan'
 
+gem 'turbolinks'
+
 gem 'rspec-rails'
