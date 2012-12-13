@@ -11,7 +11,17 @@
     = csrf_meta_tags 
   %body
     .container
-      %h1#logo= link_to "Threads", root_url
+      %header#main
+        .pull-right
+          - if user_signed_in? 
+            = current_user.name
+            \ -
+            = link_to "Sign Out", destroy_user_session_path, method: :delete
+          - else 
+            = link_to "Sign In", new_user_session_path 
+            \|
+            = link_to "Sign Up", new_user_registration_path 
+        %h1#logo= link_to "Threads", root_url
       .flashes
         - [:notice, :error, :alert].each do |level|
           - unless flash[level].blank?

@@ -19,4 +19,7 @@ gem 'rails-timeago', '~> 2.0.0.beta1'
 
 gem 'draper'
 
+gem 'devise'
+gem 'cancan'
+
 gem 'rspec-rails'
