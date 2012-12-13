@@ -11,6 +11,7 @@
       %td
         .pull-right.muted
           = timeago_tag project.updated_at
+        %i.icon-inbox
         = link_to project.name, project 
         .muted
           - if thread = project.threads.latest.last 
