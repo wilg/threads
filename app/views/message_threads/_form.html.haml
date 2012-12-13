@@ -1,4 +1,4 @@
-= form_for @message_thread do |f|
+= twitter_bootstrap_form_for @message_thread, :html => { :class => 'form-horizontal'} do |f|
   - if @message_thread.errors.any?
     #error_explanation
       %h2= "#{pluralize(@message_thread.errors.count, "error")} prohibited this message_thread from being saved:"
@@ -6,5 +6,8 @@
         - @message_thread.errors.full_messages.each do |msg|
           %li= msg
 
-  .actions
+  = f.text_field :name
+
+  = f.actions do
     = f.submit 'Save'
+    = link_to "Cancel", @message_thread || projects_url, class: 'btn'

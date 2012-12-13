@@ -5,4 +5,6 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name
 
+  scope :latest, -> { order("updated_at desc") }
+
 end

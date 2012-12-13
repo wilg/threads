@@ -11,5 +11,11 @@
     = csrf_meta_tags 
   %body
     .container
+      %h1#logo= link_to "Threads", root_url
+      .flashes
+        - [:notice, :error, :alert].each do |level|
+          - unless flash[level].blank?
+            .alert{class: flash_class(level)}
+              = flash[level]
       = yield 
     = javascript_include_tag :application

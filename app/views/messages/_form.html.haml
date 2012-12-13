@@ -10,9 +10,11 @@
     = f.hidden_field :thread_id
   - else 
     = f.hidden_field :project_id
-    = f.text_field :thread_name, "Subject"
+    = f.text_field :thread_name, "Subject" do
+      %span.help-block
+        We'll create a new thread for this subject.
 
-  = f.text_area :body
+  = f.text_area :body, "Message"
 
   = f.actions do
     = f.submit 'Send'

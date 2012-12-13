@@ -8,6 +8,8 @@ class Message < ActiveRecord::Base
   attr_accessor :project_id, :thread_name
 
   attr_accessible :project_id, :thread_name, :body, :thread_id
+  
+  scope :latest, -> { order("updated_at desc") }
 
   before_validation :create_thread_if_none_present
   def create_thread_if_none_present

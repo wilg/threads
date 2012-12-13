@@ -1,9 +1,19 @@
 .page-header
   .btn-toolbar.pull-right
-    = link_to 'New Project', new_project_path, class: 'btn'
+    = link_to new_project_path, class: 'btn' do
+      %i.icon-edit
+      New Project
   %h1 Your Projects
 
 %table.table.table-striped
   - @projects.each do |project|
     %tr
-      %td= link_to project.name, project 
+      %td
+        .pull-right.muted
+          = timeago_tag project.updated_at
+        = link_to project.name, project 
+        .muted
+          - if project.threads.latest.last 
+            %strong John Adams
+            in
+            %em= project.threads.latest.last.try :name 

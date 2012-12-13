@@ -1,13 +1,17 @@
 .page-header
   .btn-toolbar.pull-right
-    = link_to "New Message", new_message_path(project_id: @project.id), class: "btn btn-primary"
-    = link_to 'Edit Project', edit_project_path(@project), class: 'btn'
+    = link_to new_message_path(project_id: @project.id), class: "btn btn-primary" do
+      %i.icon-edit.icon-white
+      New Message
+    = link_to edit_project_path(@project), class: 'btn' do
+      %i.icon-asterisk
+      Edit Project
 
   %h1= @project.name 
 
 %table.table.table-striped
   %tbody
-    - @project.threads.each do |thread|
+    - @threads.each do |thread|
       %tr
         %td
           .pull-right.muted
@@ -15,7 +19,10 @@
           = link_to thread.name, thread 
           .muted
             %strong John Adams
-            = truncate thread.messages.last.body, length: 50
-  
+            = truncate thread.messages.latest.last.body, length: 50
+- if @project.threads.size < 1 
+  .well
+    There aren't any messages here.
+    = link_to "Send one!", new_message_path(project_id: @project.id)
 
 = link_to 'All Projects', projects_path

@@ -1,12 +1,16 @@
-%p#notice= notice
 .page-header
   .btn-toolbar.pull-right
-    = link_to "New Message", new_message_path(thread_id: @message_thread.id), class: "btn btn-primary"
-    = link_to 'Thread Options', edit_message_thread_path(@message_thread), class: 'btn'
+    = link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary" do
+      %i.icon-edit.icon-white
+      New Message
+    = link_to edit_message_thread_path(@message_thread), class: 'btn' do
+      %i.icon-asterisk
+      Thread Options
+      
   %h1= @message_thread.name
   %h4.muted in #{link_to @message_thread.project.name, @message_thread.project}
 
-- @message_thread.messages.each do |message|
+- @message_thread.messages.latest.each do |message|
   .media
     = link_to image_tag("http://lorempixel.com/64/64/people", class: 'media-object'), nil, class: 'pull-left'
     .media-body
@@ -17,7 +21,9 @@
 
 %hr
 
-= link_to "New Message", new_message_path(thread_id: @message_thread.id), class: "btn btn-primary"
+= link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary" do
+  %i.icon-edit.icon-white
+  New Message
 
 %hr
 

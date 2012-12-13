@@ -8,5 +8,6 @@
 
   = f.text_field :name
 
-  .actions
+  = f.actions do
     = f.submit 'Save'
+    = link_to "Cancel", projects_url, class: 'btn'
