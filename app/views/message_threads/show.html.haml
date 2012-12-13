@@ -1,0 +1,28 @@
+%p#notice= notice
+.page-header
+  .btn-toolbar.pull-right
+    = link_to "New Message", new_message_path(thread_id: @message_thread.id), class: "btn btn-primary"
+    = link_to 'Thread Options', edit_message_thread_path(@message_thread), class: 'btn'
+  %h1= @message_thread.name
+  %h4.muted in #{link_to @message_thread.project.name, @message_thread.project}
+
+- @message_thread.messages.each do |message|
+  .media
+    = link_to image_tag("http://lorempixel.com/64/64/people", class: 'media-object'), nil, class: 'pull-left'
+    .media-body
+      %p
+        %strong John Smith
+        %small.muted= timeago_tag message.created_at
+      = simple_format message.body
+
+%hr
+
+= link_to "New Message", new_message_path(thread_id: @message_thread.id), class: "btn btn-primary"
+
+%hr
+
+%ul.breadcrumb
+  %li
+    = link_to @message_thread.project.name, @message_thread.project
+    %span.divider /
+  %li.active= link_to @message_thread.name, @message_thread

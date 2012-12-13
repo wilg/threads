@@ -1,0 +1,17 @@
+%h1 Listing message_threads
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @message_threads.each do |message_thread|
+    %tr
+      %td= link_to 'Show', message_thread
+      %td= link_to 'Edit', edit_message_thread_path(message_thread)
+      %td= link_to 'Destroy', message_thread, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Message thread', new_message_thread_path

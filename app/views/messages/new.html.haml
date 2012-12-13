@@ -1,0 +1,7 @@
+%p#notice= notice
+.page-header
+  %h1 New Message
+  - if @message.thread 
+    %h4.muted on #{@message.thread.name}
+
+= render 'form'
