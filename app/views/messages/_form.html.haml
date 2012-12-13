@@ -6,10 +6,10 @@
         - @message.errors.full_messages.each do |msg|
           %li= msg
 
-  - if @message.thread.present?
+  - if @message.thread.present? && !@message.thread.new_record?
     = f.hidden_field :thread_id
-  - else 
-    = f.text_field :thread_name, "Subject" do
+  - else
+    = f.text_field :thread_name_to_create, "Subject" do
       %span.help-block
         We'll create a new thread for this subject.
     = f.select :project_id, "Project", Project.all.map{|p| [p.name, p.id]}

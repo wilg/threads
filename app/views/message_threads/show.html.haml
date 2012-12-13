@@ -4,7 +4,7 @@
   .btn-toolbar.pull-right
     = link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary" do
       %i.icon-edit.icon-white
-      New Message
+      Reply
     = link_to edit_message_thread_path(@message_thread), class: 'btn' do
       %i.icon-asterisk
       Options
