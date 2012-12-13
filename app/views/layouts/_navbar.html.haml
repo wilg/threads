@@ -1,0 +1,16 @@
+.page-header
+  %h1#logo= link_to "&psi; Threads".html_safe, root_url
+.well{style: "padding: 8px 0;"}
+  %ul.nav.nav-list
+    - if user_signed_in?
+      %li= link_to "All Projects", projects_path
+      %li.divider
+      %li.nav-header Projects
+      - Project.all.each do |project|
+        %li= link_to project.name, project
+      %li.divider
+      %li.nav-header= current_user.name
+      %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+    - else
+      %li= link_to "Sign In", new_user_session_path
+      %li= link_to "Sign Up", new_user_registration_path

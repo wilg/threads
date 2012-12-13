@@ -29,5 +29,4 @@
     = link_to "Send one!", new_message_path(project_id: @project.id)
 
 .muted
-  = link_to 'All Projects', projects_path
-  \- Created by #{@project.creator.name}
+  %small Project created by #{@project.creator.name}.
