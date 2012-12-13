@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def push_channel
+    'open' #{}"user-#{id}"
+  end
+
 end

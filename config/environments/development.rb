@@ -34,4 +34,11 @@ ThreadsApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  # Dev only
+  Pusher.app_id = 33523
+  Pusher.key = '3a631bf1df27f3bdd38f'
+  Pusher.secret = 'b1bd0f3ba34da34f95c6'
+
 end

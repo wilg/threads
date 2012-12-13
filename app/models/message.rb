@@ -11,8 +11,10 @@ class Message < ActiveRecord::Base
   attr_accessor :project_id, :thread_name
 
   attr_accessible :project_id, :thread_name, :body, :thread_id
-  
+
   scope :latest_first, -> { order("created_at desc") }
+
+  include Pushable
 
   before_validation :create_thread_if_none_present
   def create_thread_if_none_present
@@ -21,5 +23,21 @@ class Message < ActiveRecord::Base
     end
   end
 
+  after_create :notify
+  def notify
+    push 'message_created', self.as_json
+  end
+
+  def as_json options = {}
+    super({methods: [:thread_name, :user_name]}.merge(options))
+  end
+
+  def user_name
+    user.name
+  end
+
+  def thread_name
+    thread.name
+  end
 
 end
