@@ -9,12 +9,14 @@
     %h1= @message_thread.name
     %h4.muted in #{link_to @message_thread.project.name, @message_thread.project}
 
+  / - if @message_thread.starred?
+  /   .thread-messages.starred
+  /     = render @message_thread.messages.starred.latest_first
+
   // Quick Reply
   = link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary key-compose", id: "thread-quick-reply-shield" do
     %i.icon-edit.icon-white
     Reply
-  / #thread-quick-reply-shield
-  /   Click To Reply
   #thread-quick-reply{style: "display: none"}
     = form_for @message_thread.messages.build, remote: true, :html => { :class => 'form-horizontal'} do |f|
       = f.hidden_field :thread_id

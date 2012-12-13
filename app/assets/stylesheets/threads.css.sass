@@ -9,11 +9,19 @@
       margin-bottom: 0
 
   .media-header
-    time
+    small
       float: right
+      .star-button
+        margin-left: 10px
     border-bottom: 1px solid #eee
     padding-bottom: 5px
     margin-bottom: 5px
+
+  &.starred
+    background-color: $star_color
+    border-color: darken($star_color, 8%)
+    .media-header
+      border-color: darken($star_color, 8%)
 
 #thread-quick-reply
   textarea
@@ -25,3 +33,9 @@
 
 #thread-quick-reply-shield
   margin-bottom: 15px
+
+.star-button
+  color: darken($star_color, 40%)
+  &:hover
+    text-decoration: none
+    color: darken($star_color, 60%)

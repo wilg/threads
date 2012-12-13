@@ -4,6 +4,8 @@ class Message < ActiveRecord::Base
   belongs_to :thread, class_name: "MessageThread", touch: true
   has_one :project, through: :thread
 
+  belongs_to :starrer, class_name: "User"
+
   validates_presence_of :thread, :thread_id
   validates_presence_of :body
 
@@ -13,6 +15,7 @@ class Message < ActiveRecord::Base
   attr_accessible :project_id, :thread_name_to_create, :body, :thread_id
 
   scope :latest_first, -> { order("created_at desc") }
+  scope :starred, -> { where("starred_at is not null") }
 
   include Pushable
 
@@ -38,6 +41,22 @@ class Message < ActiveRecord::Base
 
   def thread_name
     thread.name
+  end
+
+  def starred?
+    starred_at.present?
+  end
+
+  def star_by!(user)
+    self.starrer = user
+    self.starred_at = Time.now
+    self.save!
+  end
+
+  def unstar!
+    self.starrer = nil
+    self.starred_at = nil
+    self.save!
   end
 
 end

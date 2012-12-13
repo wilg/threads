@@ -1,0 +1,7 @@
+.mini-message.small{class: message.starred? ? "starred" : "not-starred"}
+  = link_to message_thread_path(message.thread, anchor: "message-#{message.id}") do ||
+    - if message.starred?
+      %span.star &#9733;
+    = image_tag avatar(message.user, s: 16)
+    %strong= message.user.name
+    = truncate message.body, length: 50

@@ -19,10 +19,12 @@
           .pull-right.muted
             = timeago_tag thread.updated_at
           = link_to thread.name, thread
-          .muted
-            = image_tag avatar(thread.last_message.user, s: 16)
-            %strong= thread.last_message.user.name
-            = truncate thread.last_message.body, length: 50
+
+          - if thread.starred?
+            - thread.messages.starred.latest_first.each do |message|
+              = render partial: "messages/mini_message", locals: {message: message}
+          - else
+            = render partial: "messages/mini_message", locals: {message: thread.last_message}
 - if @project.threads.size < 1
   .well
     There aren't any messages here.

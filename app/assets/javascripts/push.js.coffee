@@ -17,3 +17,6 @@ if push_key? and push_channel?
       console.log "Recieved a notification about user #{data.user_id} but we are #{current_user_id}"
     else
       window.notify("#{data.user_name} in #{data.thread_name}", data.body)
+
+  channel.bind 'message_starred', (data) ->
+    $(".thread-show.thread-#{data.thread_id}").trigger('threads:update')

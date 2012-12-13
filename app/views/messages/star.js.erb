@@ -1,0 +1,1 @@
+$(".thread-show.thread-<%= @message.thread.id %> .thread-messages").html("<%=j render @message.thread.messages.latest_first %>");

@@ -29,6 +29,20 @@ class MessagesController < ApplicationController
   def edit
   end
 
+  def star
+    @message.star_by! current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def unstar
+    @message.unstar!
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @message.user = current_user
     respond_to do |format|

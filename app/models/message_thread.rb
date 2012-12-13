@@ -21,4 +21,8 @@ class MessageThread < ActiveRecord::Base
     @last_message ||= messages.latest_first.first
   end
 
+  def starred?
+    messages.starred.size > 0
+  end
+
 end

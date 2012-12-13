@@ -15,5 +15,5 @@
 //= require rails-timeago
 //= require turbolinks
 //= require mousetrap.min
-// require bootstrap
+//= require bootstrap
 //= require_tree .
