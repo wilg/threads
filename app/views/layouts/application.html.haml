@@ -3,14 +3,16 @@
   %head
     %meta{:charset => "utf-8"}/
     = title_tag
-    %meta{:content => "", :name => "description"}/
+    / %meta{:content => "", :name => "description"}/
     - if current_user
       %meta{:content => Pusher.key, :name => "push-key"}/
       %meta{:content => current_user.push_channel, :name => "push-channel"}/
-    %meta{:content => "", :name => "author"}/
+      %meta{:content => current_user.id, :name => "current-user"}/
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js"
+    = javascript_include_tag :application
     = csrf_meta_tags
   %body
     .container#main-container
@@ -26,5 +28,3 @@
             = yield
         .span3
           = render 'layouts/navbar'
-    = javascript_include_tag "http://js.pusher.com/1.12/pusher.min.js"
-    = javascript_include_tag :application
