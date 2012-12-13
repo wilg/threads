@@ -8,4 +8,12 @@ module ApplicationHelper
     end
   end
 
+  def gravatar_tag email, options = {}
+    Gravatar.new(email).image_url({ssl: true, default: :identicon}.merge(options))
+  end
+
+  def avatar user, options = {}
+    gravatar_tag user.email, options
+  end
+
 end

@@ -13,7 +13,13 @@
           = timeago_tag project.updated_at
         = link_to project.name, project 
         .muted
-          - if project.threads.latest.last 
-            %strong John Adams
+          - if thread = project.threads.latest.last 
+            = image_tag avatar(thread.last_message.user, s: 16)
+            %strong= thread.last_message.user.name 
             in
-            %em= project.threads.latest.last.try :name 
+            %em= thread.name
+
+- if @projects.size < 1 
+  .well
+    You don't have any projects yet.
+    = link_to "Create one!", new_project_path

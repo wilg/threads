@@ -18,11 +18,14 @@
             = timeago_tag thread.updated_at
           = link_to thread.name, thread 
           .muted
-            %strong John Adams
-            = truncate thread.messages.latest.last.body, length: 50
+            = image_tag avatar(thread.last_message.user, s: 16)
+            %strong= thread.last_message.user.name 
+            = truncate thread.last_message.body, length: 50
 - if @project.threads.size < 1 
   .well
     There aren't any messages here.
     = link_to "Send one!", new_message_path(project_id: @project.id)
 
-= link_to 'All Projects', projects_path
+.muted
+  = link_to 'All Projects', projects_path
+  \- Created by #{@project.creator.name}

@@ -10,20 +10,14 @@
   %h1= @message_thread.name
   %h4.muted in #{link_to @message_thread.project.name, @message_thread.project}
 
-- @message_thread.messages.latest.each do |message|
+- @message_thread.messages.latest_first.each do |message|
   .media
-    = link_to image_tag("http://lorempixel.com/64/64/people", class: 'media-object'), nil, class: 'pull-left'
+    = link_to image_tag(avatar(message.user, s: 64), class: 'media-object'), nil, class: 'pull-left'
     .media-body
       %p
-        %strong John Smith
+        %strong= message.user.name 
         %small.muted= timeago_tag message.created_at
       = simple_format message.body
-
-%hr
-
-= link_to new_message_path(thread_id: @message_thread.id), class: "btn btn-primary" do
-  %i.icon-edit.icon-white
-  New Message
 
 %hr
 

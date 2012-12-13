@@ -18,6 +18,7 @@ gem 'twitter_bootstrap_form_for', git: "git://github.com/stouset/twitter_bootstr
 gem 'rails-timeago', '~> 2.0.0.beta1'
 
 gem 'draper'
+gem 'gravatar-ultimate'
 
 gem 'devise'
 gem 'cancan'

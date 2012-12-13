@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
 
   has_many :threads, class_name: "MessageThread", dependent: :destroy
   has_many :messages, through: :threads
+  belongs_to :creator, class_name: "User"
 
   attr_accessible :name
 
