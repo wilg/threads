@@ -1,3 +1,5 @@
+- title @project.name
+
 .page-header
   .btn-toolbar.pull-right
     = link_to new_message_path(project_id: @project.id), class: "btn btn-primary" do
@@ -7,7 +9,7 @@
       %i.icon-asterisk
       Edit Project
 
-  %h1= @project.name 
+  %h1= @project.name
 
 %table.table.table-striped
   %tbody
@@ -16,12 +18,12 @@
         %td
           .pull-right.muted
             = timeago_tag thread.updated_at
-          = link_to thread.name, thread 
+          = link_to thread.name, thread
           .muted
             = image_tag avatar(thread.last_message.user, s: 16)
-            %strong= thread.last_message.user.name 
+            %strong= thread.last_message.user.name
             = truncate thread.last_message.body, length: 50
-- if @project.threads.size < 1 
+- if @project.threads.size < 1
   .well
     There aren't any messages here.
     = link_to "Send one!", new_message_path(project_id: @project.id)

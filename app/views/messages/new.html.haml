@@ -1,6 +1,7 @@
+- title "New Message"
 .page-header
   %h1 New Message
-  - if @message.thread 
+  - if @message.thread
     %h4.muted on #{@message.thread.name}
 
 = render 'form'
