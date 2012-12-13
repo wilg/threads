@@ -19,6 +19,8 @@ ready = ->
       else
         $('.local-notification-dependent.permission-required').show()
 
+    checkPerm()
+
     window.askForNotificationPermission = ->
       if window.webkitNotifications.checkPermission() == 0
         checkPerm()
